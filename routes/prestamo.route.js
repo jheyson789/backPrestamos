@@ -8,4 +8,5 @@ var router = express.Router();
 router.get('/mostrar-prestamos', ProjectController.mostrarPrestamos);
 router.post('/save-project', ProjectController.saveProject);
 router.get('/mostrar-prestamo/:id', ProjectController.mostrarPrestamo);
+router.delete('/eliminar-prestamo/:id', ProjectController.eliminarPrestamo);
 module.exports = router;

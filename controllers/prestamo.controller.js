@@ -61,6 +61,17 @@ var controller = {
       if (!prestamo) return res.status(404).send({message: 'No se encontro el prestamo'});
       return res.status(200).send({prestamo});
     });
+  },
+  eliminarPrestamo: function(req, res) {
+    var prestamoId = req.params.id;
+    if (prestamoId == null) {
+      return res.status(404).send({message: 'Debe llenar el ID'});
+    }
+    Prestamo.findByIdAndDelete(prestamoId,(err, prestamo)=> {
+      if (err) return res.status(500).send({message: 'Error al encontrar el id'});
+      if (!prestamo) return res.status(404).send({message: 'No se encontro el id del prestamo'});
+      return res.status(200).send({message: 'Se elimino correctamente'});
+    })
   }
 
   
