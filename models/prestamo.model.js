@@ -1,5 +1,4 @@
 'use strict'
-
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -21,7 +20,8 @@ var PrestamoSchema = Schema({
     kilate: String,
     peso: String,
     observacion: String
-  }]
+  }],
+  pagos: [{type: Schema.Types.ObjectId, ref: 'pago'}]
 });
 
 module.exports = mongoose.model('prestamo', PrestamoSchema);

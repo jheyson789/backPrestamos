@@ -7,6 +7,7 @@ var app = express();
 
 //Cargar archivos rutas
 var project_routes = require('./routes/prestamo.route');
+var pagos_routes = require('./routes/pago.route');
 
 // Middlewares
 app.use(bodyParser.urlencoded({extended: true}));
@@ -24,6 +25,7 @@ app.all("/*", function(req, res, next){
 
 // Rutas
 app.use('/api', project_routes);
+app.use('/api',pagos_routes);
 
 
 // Exportar
