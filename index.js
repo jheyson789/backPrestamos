@@ -18,5 +18,31 @@ mongoose.connect(urlDB, {
     app.listen( process.env.PORT , () => {
       console.log(`Servidor corriendo en el puerto ${process.env.PORT}`);
     });
+
+    const WebSocket = require ('ws');
+
+    var reconnectInterval  = 1000 * 10
+    // var ws;
+
+    var connect = function(){
+    console.log('corriendo');                
+    var ws = new WebSocket ('wss://marketdata.tradermade.com/feed');
+    console.log(`{"userKey":"wsTimxVxcnGuuXLC-77w", "symbol": "GBPUSD"}`);
+
+    ws.on('open', function open() {
+      console.log('peticion');
+      ws.send(`{"userKey":"wsTimxVxcnGuuXLC-77w", "symbol": "GBPUSD"}`);
+    });
+
+    ws.on('close', function() {
+      console.log('socket close : will reconnect in ' + reconnectInterval );
+      setTimeout(connect, reconnectInterval)
+    });
+
+    ws.on('message', function incoming(data) {
+      console.log(data);
+    });
+    };
+    connect();
   })
   .catch(err => console.log(err));
